@@ -242,22 +242,30 @@ jobs:
 
   configure-infrastructure:
     docker:
-      - image: python:3.7-alpine3.11
+      #- image: python:3.7-alpine3.11
+      - image: amazon/aws-cli
     steps:
       - checkout
-      - run: apk add --update tar gzip
+      #- run: apk add --update tar gzip
+      - run: 
+          name: Install Dependency
+          command: |
+            yum install -y tar gzip
+            yum update -y
+            amazon-linux-extras install ansible2 -y
+            ansible --version
       - add_ssh_keys:
           fingerprints:
             - "4a:53:c6:ea:ff:f0:5e:85:cb:82:72:3c:ff:53:9e:1d"
       - attach_workspace:
           at: ~/
-      - run:
-          name: Install Ansible
-          command: |
-            apk add ansible
-            pip install awscli
-            # Lets check the version
-            aws --version
+      # - run:
+      #     name: Install Ansible
+      #     command: |
+      #       apk add ansible
+      #       pip install awscli
+      #       # Lets check the version
+      #       aws --version
       - run:
           name: Configure server
           command: |
