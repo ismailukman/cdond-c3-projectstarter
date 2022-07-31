@@ -268,7 +268,7 @@ jobs:
   run-migrations:
     docker:
       # Docker image here that supports NodeJS
-      - image: circleci/node:13.8.0
+      - image: circleci/node:16.10 # 15.0.1 16.10 13.8.0
     steps:
       # Checkout code from git
       - checkout
@@ -285,7 +285,7 @@ jobs:
             # Your code here
             if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
-              curl --insecure https:://kvdb.io/8ckrPY1B7CXzvQzaDALmqL/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+              curl --insecure https:://kvdb.io/SNCtUzyA9y1ZkEbCc8EwKk/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             fi
       - destroy-environment
       - revert-migrations
