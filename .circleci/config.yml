@@ -342,7 +342,7 @@ jobs:
           command: |
             cd frontend
             sudo npm install -g npm@latest
-            rm -fr node_modules
+            rm -rf node_modules
             npm install
             npm run build
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
@@ -430,13 +430,13 @@ jobs:
 
 
   cloudfront-update:
-    docker:
+    docker: 
       - image: amazon/aws-cli
     steps:
       # Checkout code from git
       - checkout
       - run:
-          name: Install dependencies / Save Old Workflow ID to kvdb.io
+          name: Install dep / Save Old Workflow ID to kvdb.io
           command: |
             export OLD_WORKFLOW_ID=$(aws cloudformation \
             list-exports --query "Exports[?Name==\'WorkflowID\'].Value" \
