@@ -373,6 +373,7 @@ jobs:
 
             cd .circleci/ansible
             mkdir files
+            cd files
             tar -C ../../../backend -czvf artifact.tar.gz .
             cd ../
 
