@@ -18,7 +18,7 @@
     cd ~/backend-app/dist
 
     cd ../
-    npm insall
+    npm install
     npm run build
 
     sudo npm install forever -g
