@@ -287,7 +287,7 @@ jobs:
   run-migrations:
     docker:
       # Docker image here that supports NodeJS
-      - image: circleci/node:16.10 # 15.0.1 16.10 13.8.0
+      - image: circleci/node:13.8.0 # 15.0.1 16.10 13.8.0
     steps:
       # Checkout code from git
       - checkout
@@ -485,7 +485,6 @@ jobs:
               aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID}"
             fi
  
-            
 
 workflows:
   default:
