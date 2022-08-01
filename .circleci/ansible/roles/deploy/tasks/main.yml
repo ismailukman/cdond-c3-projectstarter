@@ -1,45 +1,5 @@
-# ---
-# - name: "Create backend app directory"
-#   file:
-#     path: ~/backend-app
-#     state: directory
-
-# - name: "Unarchive backend files"
-#   unarchive:
-#     src: artifact.tar.gz
-#     dest: ~/backend-app
-
-# - name: "Installing Node Dependencies"
-#   shell: |
-#     cd ~/backend-app
-#     npm i 
-# - name: "Executing Node app with PM2"
-#   shell: |
-#     cd ~/backend-app/dist
-
-#     cd ../
-#     npm install
-#     npm run build
-
-#     pm2 start -f ./dist/main.js
-
-#     sudo npm install forever -g
-#     sudo npm install ts-node -g
-#     forever state -c "ts-node -r tsconfig-paths/register -r dotenv/config src/main.ts" ./
-
-#   register: execute_node
-
-# - name: print message
-#   debug:
-#     msg: "{{ execute_node.stdout_lines }}"
-
-# - name: "Configure pm2 to start as service"
-#   become: true
-#   shell: | 
-#     env PATH=$PATH:/usr/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
-
 ---
-- name: "Creates backend app directory"
+- name: "Create backend app directory"
   file:
     path: ~/backend-app
     state: directory
@@ -52,20 +12,21 @@
 - name: "Installing Node Dependencies"
   shell: |
     cd ~/backend-app
-    npm i
+    npm i 
 - name: "Executing Node app with PM2"
   shell: |
     cd ~/backend-app/dist
+
     cd ../
     npm install
-    
     npm run build
+
     pm2 start -f ./dist/main.js
-    
-    # sudo npm install forever -g
-    # sudo npm install ts-node -g
-    # forever start -c "ts-node -r tsconfig-paths/register -r dotenv/config src/main.ts" ./
-    
+
+    sudo npm install forever -g
+    sudo npm install ts-node -g
+    forever state -c "ts-node -r tsconfig-paths/register -r dotenv/config src/main.ts" ./
+
   register: execute_node
 
 - name: print message
@@ -74,6 +35,7 @@
 
 - name: "Configure pm2 to start as service"
   become: true
-  shell: |
+  shell: | 
     env PATH=$PATH:/usr/local/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu
+
 
