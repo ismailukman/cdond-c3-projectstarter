@@ -246,7 +246,7 @@ jobs:
             --query 'Reservations[*].Instances[*].PublicIpAddress' \
             --output text --filter Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7} >> inventory.txt
             cat inventory.txt
-            # export BACKEND_IP=$(aws ec2 descibe-instance \
+            # export BACKEND_IP=$(aws ec2 describe-instances \
             # --query 'Reservations[*].Instances[*].PublicIpAddress' \
             # --filter Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7} \
             # --output text 
@@ -328,7 +328,7 @@ jobs:
           name: Get backend url
           command: |
             # your code here
-            export BACKEND_IP=$(aws ec2 descibe-instance \
+            export BACKEND_IP=$(aws ec2 describe-instances \
             --query 'Reservations[*].Instances[*].PublicIpAddress' \
             --filter Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7} \
             --output text 
@@ -392,16 +392,12 @@ jobs:
       - checkout
       - install_nodejs
       - install_awscli 
-    
-      - run:
-          name: Get backend url
-          command: |
-            # your code here
+  
       - run:
           name: Backend smoke test.
           command: |
             # your code here
-            BACKEND_PUBLIC_IP=$(aws ec2 descibe-instance \
+            BACKEND_PUBLIC_IP=$(aws ec2 describe-instances \
             --filter "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
             --query 'Reservations[*].Instances[*].PublicIpAddress' \
             --output text 
