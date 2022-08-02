@@ -66,7 +66,7 @@ commands:
           when: on_fail
           command: |
             # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
-            SUCCESS = $(curl --insecure "https://kvdb.io/SNCtUzyA9y1ZkEbCc8EwKk/migration_<<parameters.workflow_id>>")
+            SUCCESS = $(curl --insecure "https://kvdb.io/GihzLn9tKaS8UmwtTTnRhb/migration_<<parameters.workflow_id>>")
             if(( $SUCCESS==1 )); 
             then
               cd ~/project/backend
@@ -452,8 +452,7 @@ jobs:
             --stack-name InitialStack
       
       - destroy-environment
-      - revert-migrations
-      # Here's where you will add some code to rollback on failure  
+      - revert-migrations 
 
   cleanup:
     docker:
