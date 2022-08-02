@@ -20,11 +20,11 @@
     npm install
 
     npm run build
-    #pm2 start -f ./dist/main.js
+    pm2 start -f ./dist/main.js
 
-    sudo npm install forever -g
-    sudo npm install ts-node -g
-    forever state -c "ts-node -r tsconfig-paths/register -r dotenv/config src/main.ts" ./
+    # sudo npm install forever -g
+    # sudo npm install ts-node -g
+    # forever state -c "ts-node -r tsconfig-paths/register -r dotenv/config src/main.ts" ./
 
   register: execute_node
 
