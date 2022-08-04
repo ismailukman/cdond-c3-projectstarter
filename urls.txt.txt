@@ -2,5 +2,5 @@
 	https://github.com/ismailukman
 	https://github.com/ismailukman/cdond-c3-projectstarter
 
-2. Public URL for your S3 Bucket (aka, your green candidate front-end) [URL02]
-	http://udapeople-2c6b5f4.s3-website-us-west-2.amazonaws.com
+2. Public URL for your S3 Bucket (aka, your green candidate front-end) [URL02] 
+	http://udapeople-76b76ae.s3-website-us-west-2.amazonaws.com
