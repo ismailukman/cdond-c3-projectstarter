@@ -32,6 +32,7 @@ Resources:
           TargetOriginId: webpage
           ViewerProtocolPolicy: allow-all
 
+
 Outputs:
   WorkflowID:
     Value: !Sub ${WorkflowID}
